@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('amount')->comment('Сумма');
             $table->string('currency')->index()->comment('Валюта');
             $table->enum('status', ['Оплачен', 'Не оплачен'])->default('Не оплачен')->comment('Статус');
+
             $table->timestamps();
         });
     }

@@ -7,13 +7,16 @@ use App\Models\User;
 use App\Http\Requests\StorePaymentsRequest;
 use App\Http\Requests\UpdatePaymentsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class PaymentsController extends Controller
 {
     /**
      * Получение заявок на выплату
+     * 
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $payments = Payments::all();
 
@@ -22,8 +25,10 @@ class PaymentsController extends Controller
 
     /**
      * Изменение статуса заявки на выплату
+     * 
+     * @param Request $request
      */
-    public function change(Request $request)
+    public function change(Request $request): JsonResponse
     {
         if (! backpack_auth()->check()) {
             return abort(404);
@@ -41,8 +46,10 @@ class PaymentsController extends Controller
 
     /**
      * Добавление заявки на выплату
+     * 
+     * @param Request $request
      */
-    public function create(Request $request)
+    public function create(Request $request): JsonResponse
     {
         Payments::create([
             'login' => $request->login,
